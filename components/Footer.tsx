@@ -68,7 +68,7 @@ export default function Footer() {
               <div className="relative w-16 h-16">
                 <Image src="/images/logo.png" alt="Living Engineering Laboratory Logo" fill className="object-contain" />
               </div>
-              <div className="font-avenir-heavy text-lg leading-tight">
+              <div className="font-avenir-heavy text-xl text-black leading-tight whitespace-nowrap">
                 Living Engineering Laboratory
               </div>
             </Link>

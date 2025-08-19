@@ -4,8 +4,8 @@ export default function WhySection() {
   const cards = [
     {
       icon: (
-        <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838l-2.727 1.17 1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z" clipRule="evenodd" />
         </svg>
       ),
       title: "Experiential Learning",
@@ -14,13 +14,8 @@ export default function WhySection() {
     },
     {
       icon: (
-        <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
-          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-          <path d="M12 6v6m0 0l-3-3m3 3l3-3" />
-          <path d="M8 14l-2-2m0 0l-2 2m2-2l2 2" />
-          <path d="M16 8l2 2m0 0l2-2m-2 2l-2-2" />
-          <path d="M4 8l-2-2m0 0l-2 2m2-2l2 2" />
-          <path d="M8 4l-2-2m0 0l-2 2m2-2l2 2" />
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
         </svg>
       ),
       title: "Integrated Research & Thinking",
@@ -29,11 +24,8 @@ export default function WhySection() {
     },
     {
       icon: (
-        <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 20 20">
-          <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-          <path d="M6 8a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm0 4a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1z" />
-          <path d="M9 12a1 1 0 100 2h2a1 1 0 100-2H9z" />
-          <path d="M4 6a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1z" />
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clipRule="evenodd" />
         </svg>
       ),
       title: "Hands-On & Place-Based Learning",
@@ -43,8 +35,7 @@ export default function WhySection() {
   ]
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 scroll-snap-section">
-      <div className="why-section-gradient"></div>
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 mt-5">
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="font-avenir-heavy text-5xl md:text-6xl lg:text-7xl text-black leading-tight mb-6">
@@ -56,9 +47,9 @@ export default function WhySection() {
         </div>
                         <div className="relative">
           <div className="absolute inset-0 flex justify-center items-center">
-            <div className="w-4/5 h-3/4 bg-gradient-radial from-[rgba(248,172,129,0.3)] via-[rgba(248,172,129,0.15)] to-transparent rounded-full blur-xl"></div>
+            <div className="w-[calc(100%+24px)] h-[calc(100%+24px)] -top-3 -left-3 bg-gradient-radial from-[rgba(128,128,128,0.22)] via-[rgba(128,128,128,0.15)] to-transparent rounded-full blur-xl transition-all duration-300 group-hover:from-[rgba(248,172,129,0.37)] group-hover:via-[rgba(248,172,129,0.22)]"></div>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10 group">
             {cards.map((card, index) => (
               <div key={index} className="why-card-hover bg-white rounded-xl p-6 shadow-lg">
                 <div className="text-center space-y-4 relative z-10">

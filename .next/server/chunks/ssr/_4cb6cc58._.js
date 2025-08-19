@@ -158,7 +158,7 @@ function AboutPage() {
                         className: "grid lg:grid-cols-2 gap-12",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300",
+                                className: "professor-card-hover bg-white rounded-2xl p-8 shadow-xl relative",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "space-y-6",
                                     children: [
@@ -571,10 +571,10 @@ function AboutPage() {
                                 className: "grid md:grid-cols-2 gap-8",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "bg-white rounded-2xl p-8 shadow-xl",
+                                        className: "card-hover bg-white rounded-2xl p-8 shadow-xl hover:bg-gradient-to-r hover:from-[#489BAC]/10 hover:to-[#EEC583]/10 group",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "font-avenir-heavy text-2xl text-black mb-4",
+                                                className: "font-avenir-heavy text-2xl text-black mb-4 group-hover:text-[#489BAC] transition-colors",
                                                 children: "Project Development"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/about/page.tsx",
@@ -596,10 +596,10 @@ function AboutPage() {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "bg-white rounded-2xl p-8 shadow-xl",
+                                        className: "card-hover bg-white rounded-2xl p-8 shadow-xl hover:bg-gradient-to-r hover:from-[#EEC583]/10 hover:to-[#F9AC80]/10 group",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "font-avenir-heavy text-2xl text-black mb-4",
+                                                className: "font-avenir-heavy text-2xl text-black mb-4 group-hover:text-[#EEC583] transition-colors",
                                                 children: "Documentation Process"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/about/page.tsx",
@@ -621,10 +621,10 @@ function AboutPage() {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "bg-white rounded-2xl p-8 shadow-xl",
+                                        className: "card-hover bg-white rounded-2xl p-8 shadow-xl hover:bg-gradient-to-r hover:from-[#F9AC80]/10 hover:to-[#A2CAD1]/10 group",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "font-avenir-heavy text-2xl text-black mb-4",
+                                                className: "font-avenir-heavy text-2xl text-black mb-4 group-hover:text-[#F9AC80] transition-colors",
                                                 children: "Knowledge Sharing"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/about/page.tsx",
@@ -646,10 +646,10 @@ function AboutPage() {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "bg-white rounded-2xl p-8 shadow-xl",
+                                        className: "card-hover bg-white rounded-2xl p-8 shadow-xl hover:bg-gradient-to-r hover:from-[#A2CAD1]/10 hover:to-[#489BAC]/10 group",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                                className: "font-avenir-heavy text-2xl text-black mb-4",
+                                                className: "font-avenir-heavy text-2xl text-black mb-4 group-hover:text-[#A2CAD1] transition-colors",
                                                 children: "Continuous Improvement"
                                             }, void 0, false, {
                                                 fileName: "[project]/app/about/page.tsx",

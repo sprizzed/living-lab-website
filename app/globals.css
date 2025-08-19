@@ -83,34 +83,46 @@ body {
 /* Section background gradients */
 .hero-section-gradient {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at center, rgba(223, 255, 223, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
-  z-index: 0;
+  top: 7%;
+  right: -8%;
+  width: 70%;
+  height: 103%;
+  background: radial-gradient(ellipse 85% 100% at center, rgba(223, 255, 223, 0.5) 0%, rgba(183, 235, 183, 0.4) 30%, rgba(144, 215, 144, 0.3) 50%, rgba(105, 195, 105, 0.2) 65%, rgba(255, 255, 255, 0) 80%);
+  border-radius: 50%;
+  filter: blur(60px);
+  z-index: 1;
   pointer-events: none;
 }
 
-.why-section-gradient {
+/* Hero image glow effect */
+.hero-image-glow {
+  position: relative;
+}
+
+.hero-image-glow::before {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at center, rgba(248, 172, 129, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
-  z-index: 0;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: radial-gradient(ellipse at center, rgba(144, 215, 144, 0.3) 0%, rgba(183, 235, 183, 0.15) 40%, rgba(223, 255, 223, 0.05) 60%, rgba(255, 255, 255, 0) 80%);
+  border-radius: 32px;
+  filter: blur(30px);
+  z-index: -1;
   pointer-events: none;
 }
 
-.featured-projects-gradient {
+.hero-image-glow::after {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at center, rgba(72, 155, 172, 0.25) 0%, rgba(255, 255, 255, 0) 70%);
-  z-index: 0;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, rgba(144, 215, 144, 0.08) 0%, rgba(183, 235, 183, 0.04) 50%, rgba(223, 255, 223, 0.08) 100%);
+  border-radius: 20px;
+  z-index: -1;
   pointer-events: none;
 }
 
@@ -128,21 +140,21 @@ button:hover, .btn-hover:hover, a[role="button"]:hover {
   cursor: pointer;
 }
 
-/* Scroll snap effects */
+/* Smooth scrolling only */
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
 }
 
-.scroll-snap-section {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+/* Fade in animation for sections */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-/* Parallax effects */
-.parallax-bg {
-  transform: translateZ(0);
-  will-change: transform;
+.fade-in-section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Professor card hover effect */
@@ -211,11 +223,11 @@ html {
 
 .impact-section-gradient {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at center, rgba(72, 155, 172, 0.3) 0%, rgba(255, 255, 255, 0) 70%);
+  height: 50%;
+  background: linear-gradient(to top, rgba(238, 197, 131, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
   z-index: 0;
   pointer-events: none;
 }
@@ -325,7 +337,6 @@ html {
 .why-card-hover:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 0 30px rgba(248, 172, 129, 0.4);
-  background: radial-gradient(ellipse at center, rgba(248, 172, 129, 0.15) 0%, rgba(255, 255, 255, 0.05) 70%);
 }
 
 .featured-card-hover {
@@ -353,7 +364,6 @@ html {
 .featured-card-hover:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 0 30px rgba(72, 155, 172, 0.4);
-  background: radial-gradient(ellipse at center, rgba(72, 155, 172, 0.15) 0%, rgba(255, 255, 255, 0.05) 70%);
 }
 
 /* Scroll animations */

@@ -282,7 +282,7 @@ function ServicePage() {
                 className: "relative py-20 px-4 sm:px-6 lg:px-8",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "featured-projects-gradient"
+                        className: "services-section-gradient"
                     }, void 0, false, {
                         fileName: "[project]/app/service/page.tsx",
                         lineNumber: 70,
@@ -389,7 +389,7 @@ function ServicePage() {
                 className: "relative py-20 px-4 sm:px-6 lg:px-8",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "why-section-gradient"
+                        className: "impact-section-gradient"
                     }, void 0, false, {
                         fileName: "[project]/app/service/page.tsx",
                         lineNumber: 101,

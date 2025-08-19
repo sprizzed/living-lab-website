@@ -118,9 +118,9 @@ export default function ContactPage() {
 
             {/* Contact Information */}
             <div className="space-y-8">
-              <div className="featured-projects-gradient bg-white rounded-2xl p-8 shadow-xl relative">
-                <h2 className="font-avenir-heavy text-3xl text-black mb-6 relative z-10">Get in Touch</h2>
-                <div className="space-y-6 relative z-10">
+              <div className="bg-white rounded-2xl p-8 shadow-xl">
+                <h2 className="font-avenir-heavy text-3xl text-black mb-6">Contact Information</h2>
+                <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-[#489BAC] rounded-full flex items-center justify-center flex-shrink-0">
                       <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">

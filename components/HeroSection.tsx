@@ -33,13 +33,13 @@ export default function HeroSection() {
   }
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 scroll-snap-section">
+    <section id="home" className="relative min-h-screen flex items-center pt-20">
       <div className="hero-section-gradient"></div>
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="grid lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-5 lg:pl-8 space-y-6 relative">
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-radial from-[rgba(223,255,223,0.6)] via-[rgba(223,255,223,0.3)] to-transparent rounded-full blur-xl"></div>
+              <div className="absolute -inset-8 bg-gradient-radial from-[rgba(223,255,223,0.6)] via-[rgba(223,255,223,0.3)] to-transparent rounded-full blur-2xl"></div>
               <h1 className="font-avenir-heavy text-5xl md:text-6xl lg:text-7xl text-black leading-tight relative z-10">
                 Living<br />Engineering<br />Laboratory
               </h1>
@@ -66,8 +66,8 @@ export default function HeroSection() {
               </Link>
             </div>
           </div>
-          <div className="lg:col-span-7 lg:pl-4 relative flex justify-end">
-            <div className="relative w-full h-[420px] lg:h-[480px] max-w-[85%] rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="lg:col-span-7 lg:pl-4 relative flex justify-end z-20">
+                <div className="hero-image-glow relative w-full h-[460px] lg:h-[520px] max-w-[85%] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/20 backdrop-blur-sm z-30 group">
               <Image 
                 src={heroImages[currentImageIndex]} 
                 alt={`Engineering Laboratory ${currentImageIndex + 1}`} 
@@ -79,7 +79,7 @@ export default function HeroSection() {
               {/* Navigation Arrows */}
               <button
                 onClick={prevImage}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-lg transition-all duration-200 z-10 cursor-pointer"
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-lg transition-all duration-200 z-10 cursor-pointer opacity-0 group-hover:opacity-100"
                 aria-label="Previous image"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -89,7 +89,7 @@ export default function HeroSection() {
               
               <button
                 onClick={nextImage}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-lg transition-all duration-200 z-10 cursor-pointer"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-lg transition-all duration-200 z-10 cursor-pointer opacity-0 group-hover:opacity-100"
                 aria-label="Next image"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">

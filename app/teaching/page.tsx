@@ -1,6 +1,5 @@
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
-import Image from 'next/image'
 
 export default function TeachingPage() {
   const allCourses = [
@@ -70,7 +69,7 @@ export default function TeachingPage() {
       </section>
 
       {/* All Courses Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 scroll-snap-section">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="courses-section-gradient"></div>
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="mb-16">
@@ -98,7 +97,7 @@ export default function TeachingPage() {
       </section>
 
       {/* Teaching Philosophy Section */}
-      <section className="relative py-20 px-4 sm:px-6 lg:px-8 scroll-snap-section">
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8">
         <div className="philosophy-section-gradient"></div>
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-16">
