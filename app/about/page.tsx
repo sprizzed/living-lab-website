@@ -39,7 +39,7 @@ export default function AboutPage() {
                 
                 <div className="space-y-4">
                   <p className="font-inter-regular text-base text-black leading-relaxed">
-                    Dr. Adhikari currently serves as an Assistant Professor of Civil & Environmental Engineering at Juniata College and brings in his teaching experience from Cal Poly Humboldt and Texas Tech University.
+                    Dr. Adhikari currently serves as an Assistant Professor of Civil & Environmental Engineering at Alvernia University and brings in his teaching experience from Juniata College, Cal Poly Humboldt and Texas Tech University.
                   </p>
                   <p className="font-inter-regular text-base text-black leading-relaxed">
                     Dr. Adhikari strongly believes in experiential learning and strives to create research opportunities for students while creating an impact on human lives and society.
@@ -97,6 +97,18 @@ export default function AboutPage() {
                       Our projects emphasize sustainable engineering practices, preparing students to address environmental challenges in their future careers.
                     </p>
                   </div>
+                </div>
+                
+                {/* Research Paper Button */}
+                <div className="mt-8 text-center">
+                  <a 
+                    href="/Living_laboratory_Final_Adhikari__K copy.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-block btn-hover bg-[#489BAC] text-white font-avenir-heavy text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-[#3a7a8a] transition-all duration-300"
+                  >
+                    Read the full Living Engineering Laboratory Research Paper!
+                  </a>
                 </div>
               </div>
               

@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 export default function HeroSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
   const heroImages = [
     '/images/hero-image.jpg',
     '/images/hero-image2.jpeg',
@@ -13,23 +14,37 @@ export default function HeroSection() {
     '/images/hero-image4.jpeg'
   ]
 
-  // Auto-slide functionality
+  // Auto-slide functionality with smooth transitions
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
-      )
+      setIsTransitioning(true)
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => 
+          prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
+        )
+        setIsTransitioning(false)
+      }, 300) // Transition duration
     }, 3000)
 
     return () => clearInterval(interval)
   }, [heroImages.length])
 
   const nextImage = () => {
-    setCurrentImageIndex(currentImageIndex === heroImages.length - 1 ? 0 : currentImageIndex + 1)
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setCurrentImageIndex(currentImageIndex === heroImages.length - 1 ? 0 : currentImageIndex + 1)
+      setIsTransitioning(false)
+    }, 300)
   }
 
   const prevImage = () => {
-    setCurrentImageIndex(currentImageIndex === 0 ? heroImages.length - 1 : currentImageIndex - 1)
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setTimeout(() => {
+      setCurrentImageIndex(currentImageIndex === 0 ? heroImages.length - 1 : currentImageIndex - 1)
+      setIsTransitioning(false)
+    }, 300)
   }
 
   return (
@@ -49,8 +64,8 @@ export default function HeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 relative z-10">
               <Link href="/projects">
-                <button className="btn-hover bg-[#EBBD69] text-black font-avenir-heavy text-lg px-8 py-4 rounded-lg flex items-center space-x-2 shadow-lg w-full sm:w-auto">
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <button className="btn-hover bg-[#EBBD69] text-white font-avenir-heavy text-lg px-8 py-4 rounded-lg flex items-center space-x-2 shadow-lg w-full sm:w-auto">
+                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                   </svg>
                   <span>Explore Projects</span>
@@ -72,14 +87,19 @@ export default function HeroSection() {
                 src={heroImages[currentImageIndex]} 
                 alt={`Engineering Laboratory ${currentImageIndex + 1}`} 
                 fill 
-                className="object-cover transition-opacity duration-500" 
+                className={`object-cover transition-all duration-300 ${
+                  isTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
+                }`}
                 priority 
               />
               
               {/* Navigation Arrows */}
               <button
                 onClick={prevImage}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-lg transition-all duration-200 z-10 cursor-pointer opacity-0 group-hover:opacity-100"
+                disabled={isTransitioning}
+                className={`absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-lg transition-all duration-200 z-10 cursor-pointer opacity-0 group-hover:opacity-100 ${
+                  isTransitioning ? 'pointer-events-none opacity-50' : ''
+                }`}
                 aria-label="Previous image"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -89,7 +109,10 @@ export default function HeroSection() {
               
               <button
                 onClick={nextImage}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-lg transition-all duration-200 z-10 cursor-pointer opacity-0 group-hover:opacity-100"
+                disabled={isTransitioning}
+                className={`absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-black p-2 rounded-full shadow-lg transition-all duration-200 z-10 cursor-pointer opacity-0 group-hover:opacity-100 ${
+                  isTransitioning ? 'pointer-events-none opacity-50' : ''
+                }`}
                 aria-label="Next image"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -102,10 +125,19 @@ export default function HeroSection() {
                 {heroImages.map((_, index) => (
                   <button
                     key={index}
-                    onClick={() => setCurrentImageIndex(index)}
+                    onClick={() => {
+                      if (!isTransitioning) {
+                        setIsTransitioning(true)
+                        setTimeout(() => {
+                          setCurrentImageIndex(index)
+                          setIsTransitioning(false)
+                        }, 300)
+                      }
+                    }}
+                    disabled={isTransitioning}
                     className={`w-2 h-2 rounded-full transition-all duration-200 cursor-pointer ${
                       index === currentImageIndex ? 'bg-white' : 'bg-white/50'
-                    }`}
+                    } ${isTransitioning ? 'pointer-events-none' : ''}`}
                     aria-label={`Go to image ${index + 1}`}
                   />
                 ))}

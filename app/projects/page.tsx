@@ -1,14 +1,27 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
 
+interface Project {
+  id: string
+  title: string
+  category: string
+  courseId: string
+  courseName: string
+  description: string
+  images: string[]
+  procedure: string[]
+  references: string[]
+}
+
 export default function ProjectsPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
+  const [projects, setProjects] = useState<Project[]>([])
 
   const categories = [
     { id: 'all', name: 'All Categories' },
@@ -19,62 +32,57 @@ export default function ProjectsPage() {
     { id: 'materials', name: 'Materials Science' }
   ]
 
-  const projects = [
+  // Default projects as fallback
+  const defaultProjects = [
     {
-      id: 1,
+      id: '1',
       title: "Constructed Wetland Model",
       category: "environmental",
       courseId: "CEE 400",
       courseName: "Capstone Design: Lab-scale Model for Wetlands",
       description: "This capstone project involves the design and construction of a lab-scale wetland model, demonstrating innovative approaches to water treatment and sustainable environmental engineering.",
-      image: "/images/project1.jpg"
+      images: ["/images/project1.jpg"],
+      procedure: [],
+      references: []
     },
     {
-      id: 2,
+      id: '2',
       title: "Bridge Design",
       category: "structural",
       courseId: "ENGR 210",
       courseName: "Engineering Statics",
       description: "A practical application of engineering statics, this project focuses on the design, construction, and rigorous testing of a scaled bridge, showcasing structural integrity principles.",
-      image: "/images/project2.jpg"
+      images: ["/images/project2.jpg"],
+      procedure: [],
+      references: []
     },
     {
-      id: 3,
+      id: '3',
       title: "Water Quality Monitoring",
       category: "water",
       courseId: "CEE 318",
       courseName: "Environmental Water Quality",
       description: "Through hands-on field measurements and laboratory analysis, this project assesses the overall health and quality of a natural water body.",
-      image: "/images/project3.jpg"
-    },
-    {
-      id: 4,
-      title: "Sustainable Building Materials",
-      category: "materials",
-      courseId: "CEE 350",
-      courseName: "Construction Materials",
-      description: "Investigation of eco-friendly building materials and their applications in modern construction practices.",
-      image: "/images/project1.jpg"
-    },
-    {
-      id: 5,
-      title: "Solar Energy Integration",
-      category: "sustainability",
-      courseId: "ENGR 320",
-      courseName: "Renewable Energy Systems",
-      description: "Design and implementation of solar energy systems for residential and commercial applications.",
-      image: "/images/project2.jpg"
-    },
-    {
-      id: 6,
-      title: "Wastewater Treatment",
-      category: "environmental",
-      courseId: "CEE 415",
-      courseName: "Water Treatment Design",
-      description: "Advanced wastewater treatment system design incorporating biological and chemical processes.",
-      image: "/images/project3.jpg"
+      images: ["/images/project3.jpg"],
+      procedure: [],
+      references: []
     }
   ]
+
+  // Load projects from localStorage on component mount
+  useEffect(() => {
+    const savedProjects = localStorage.getItem('projects')
+    if (savedProjects) {
+      const parsedProjects = JSON.parse(savedProjects)
+      if (parsedProjects.length > 0) {
+        setProjects(parsedProjects)
+      } else {
+        setProjects(defaultProjects)
+      }
+    } else {
+      setProjects(defaultProjects)
+    }
+  }, [])
 
   const filteredProjects = projects.filter(project => {
     const matchesSearch = project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -149,7 +157,7 @@ export default function ProjectsPage() {
                 <Link key={project.id} href={`/projects/${project.id}`} className="cursor-pointer">
                   <div className="card-hover bg-white rounded-2xl overflow-hidden shadow-xl">
                     <div className="relative h-48 w-full">
-                      <Image src={project.image} alt={project.title} fill className="object-cover" />
+                      <Image src={project.images[0]} alt={project.title} fill className="object-cover" />
                     </div>
                     <div className="p-6 space-y-4">
                       <div className="flex justify-between items-start">
