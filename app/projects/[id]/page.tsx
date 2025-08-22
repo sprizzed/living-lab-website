@@ -6,14 +6,37 @@ import Link from 'next/link'
 import Navbar from '../../../components/Navbar'
 import Footer from '../../../components/Footer'
 
+interface ImageCrop {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+interface Project {
+  id: string
+  title: string
+  category: string
+  courseId: string
+  courseName: string
+  description: string
+  images: string[]
+  procedure: string[]
+  references: string[]
+  uploadedFiles: File[]
+  selectedPreviewImage: number
+  imageCrops: ImageCrop[]
+}
+
 export default function ProjectDetailPage() {
   const params = useParams()
   const projectId = params.id as string
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
   // Mock project data - in a real app, this would come from an API or database
-  const defaultProjects = {
+  const defaultProjects: Record<string, Project> = {
     '1': {
+      id: '1',
       title: "Constructed Wetland Model",
       category: "Environmental Engineering",
       courseId: "CEE 400",
@@ -38,6 +61,7 @@ export default function ProjectDetailPage() {
       imageCrops: []
     },
     '2': {
+      id: '2',
       title: "Bridge Design",
       category: "Structural Engineering",
       courseId: "ENGR 210",
@@ -62,6 +86,7 @@ export default function ProjectDetailPage() {
       imageCrops: []
     },
     '3': {
+      id: '3',
       title: "Water Quality Monitoring",
       category: "Environmental Engineering",
       courseId: "CEE 318",
@@ -87,14 +112,14 @@ export default function ProjectDetailPage() {
     }
   }
 
-  const [project, setProject] = useState(defaultProjects[projectId as keyof typeof defaultProjects])
+  const [project, setProject] = useState<Project | undefined>(defaultProjects[projectId])
 
   // Load projects from localStorage on component mount
   useEffect(() => {
     const savedProjects = localStorage.getItem('projects')
     if (savedProjects) {
-      const parsedProjects = JSON.parse(savedProjects)
-      const foundProject = parsedProjects.find((p: any) => p.id === projectId)
+      const parsedProjects: Project[] = JSON.parse(savedProjects)
+      const foundProject = parsedProjects.find((p: Project) => p.id === projectId)
       if (foundProject) {
         setProject(foundProject)
       }

@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 
 interface Project {
   id: string
@@ -166,7 +165,6 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       // Initialize imageCrops for new image files
       const newImageFiles = newFiles.filter(file => file.type.startsWith('image/'))
       if (newImageFiles.length > 0) {
-        const currentLength = formData.imageCrops ? formData.imageCrops.length : 0
         const newCrops = newImageFiles.map(() => ({ x: 0, y: 0, width: 100, height: 100 }))
         
         setFormData(prev => ({
@@ -293,14 +291,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
     }))
   }
 
-  const handleProcedureChange = (index: number, value: string) => {
-    const newProcedure = [...formData.procedure]
-    newProcedure[index] = value
-    setFormData(prev => ({
-      ...prev,
-      procedure: newProcedure
-    }))
-  }
+
 
   const handleReferenceChange = (index: number, value: string) => {
     const newReferences = [...formData.references]
@@ -1286,7 +1277,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
           
           {projects.length === 0 ? (
             <div className="px-6 py-8 text-center text-gray-500">
-              No projects added yet. Click "Add New Project" to get started.
+              No projects added yet. Click &quot;Add New Project&quot; to get started.
             </div>
           ) : (
             <div className="divide-y divide-gray-200">
