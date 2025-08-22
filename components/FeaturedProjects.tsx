@@ -1,34 +1,86 @@
 'use client'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
+interface Project {
+  id: string
+  title: string
+  category: string
+  courseId: string
+  courseName: string
+  description: string
+  images: string[]
+  procedure: string[]
+  references: string[]
+  selectedPreviewImage?: number // Added for new logic
+  imageCrops?: { x: number; y: number }[] // Added for new logic
+}
+
 export default function FeaturedProjects() {
-  const projects = [
+  const [projects, setProjects] = useState<Project[]>([])
+
+  // Default projects as fallback - same as projects page
+  const defaultProjects = [
     {
-      id: 1,
-      image: "/images/project1.jpg",
+      id: '1',
       title: "Constructed Wetland Model",
+      category: "environmental",
       courseId: "CEE 400",
       courseName: "Capstone Design: Lab-scale Model for Wetlands",
-      description: "This capstone project involves the design and construction of a lab-scale wetland model, demonstrating innovative approaches to water treatment and sustainable environmental engineering."
+      description: "This capstone project involves the design and construction of a lab-scale wetland model, demonstrating innovative approaches to water treatment and sustainable environmental engineering.",
+      images: ["/images/project1.jpg"],
+      procedure: [],
+      references: [],
+      selectedPreviewImage: 0, // Added for new logic
+      imageCrops: [{ x: 50, y: 50 }] // Added for new logic
     },
     {
-      id: 2,
-      image: "/images/project2.jpg",
+      id: '2',
       title: "Bridge Design",
+      category: "structural",
       courseId: "ENGR 210",
       courseName: "Engineering Statics",
-      description: "A practical application of engineering statics, this project focuses on the design, construction, and rigorous testing of a scaled bridge, showcasing structural integrity principles."
+      description: "A practical application of engineering statics, this project focuses on the design, construction, and rigorous testing of a scaled bridge, showcasing structural integrity principles.",
+      images: ["/images/project2.jpg"],
+      procedure: [],
+      references: [],
+      selectedPreviewImage: 0, // Added for new logic
+      imageCrops: [{ x: 50, y: 50 }] // Added for new logic
     },
     {
-      id: 3,
-      image: "/images/project3.jpg",
+      id: '3',
       title: "Water Quality Monitoring",
+      category: "water",
       courseId: "CEE 318",
       courseName: "Environmental Water Quality",
-      description: "Through hands-on field measurements and laboratory analysis, this project assesses the overall health and quality of a natural water body."
+      description: "Through hands-on field measurements and laboratory analysis, this project assesses the overall health and quality of a natural water body.",
+      images: ["/images/project3.jpg"],
+      procedure: [],
+      references: [],
+      selectedPreviewImage: 0, // Added for new logic
+      imageCrops: [{ x: 50, y: 50 }] // Added for new logic
     }
   ]
+
+  // Load projects from localStorage on component mount, fallback to default projects
+  useEffect(() => {
+    const savedProjects = localStorage.getItem('projects')
+    if (savedProjects) {
+      const parsedProjects = JSON.parse(savedProjects)
+      if (parsedProjects.length > 0) {
+        // Take the first 3 projects
+        setProjects(parsedProjects.slice(0, 3))
+      } else {
+        setProjects(defaultProjects)
+      }
+    } else {
+      setProjects(defaultProjects)
+    }
+  }, [])
+
+  // Get the first 3 projects to display
+  const featuredProjects = projects.slice(0, 3)
 
   return (
     <section id="projects" className="relative py-20 px-4 sm:px-6 lg:px-8">
@@ -42,24 +94,36 @@ export default function FeaturedProjects() {
             <div className="w-[calc(100%+46px)] h-[calc(100%+46px)] -top-8 -left-8 bg-gradient-radial from-[rgba(128,128,128,0.22)] via-[rgba(128,128,128,0.15)] to-transparent rounded-full blur-xl transition-all duration-300 group-hover:from-[rgba(72,155,172,0.39)] group-hover:via-[rgba(72,155,172,0.26)]"></div>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10 group">
-            {projects.map((project, index) => (
-              <Link key={index} href={`/projects/${project.id}`} className="cursor-pointer">
+            {featuredProjects.map((project, index) => (
+              <Link key={project.id} href={`/projects/${project.id}`} className="cursor-pointer">
                 <div className="featured-card-hover bg-white rounded-2xl overflow-hidden shadow-xl relative">
-                  <div className="relative h-48 w-full">
-                    <Image src={project.image} alt={project.title} fill className="object-cover" />
+                  <div className="relative h-40 w-full rounded-lg overflow-hidden">
+                    <Image
+                      src={project.selectedPreviewImage !== undefined && project.images && project.images[project.selectedPreviewImage] 
+                        ? project.images[project.selectedPreviewImage] 
+                        : project.images[0] || '/images/project1.jpg'}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      style={{
+                        objectPosition: project.imageCrops && project.imageCrops[project.selectedPreviewImage || 0]
+                          ? `${project.imageCrops[project.selectedPreviewImage || 0].x}% ${project.imageCrops[project.selectedPreviewImage || 0].y}%`
+                          : 'center center'
+                      }}
+                    />
                   </div>
-                  <div className="p-6 space-y-4 relative z-10">
+                  <div className="p-5 space-y-3 relative z-10">
                     <div className="flex justify-between items-start">
                       <h3 className="font-avenir-heavy text-lg text-black leading-tight">{project.title}</h3>
                       <span className="font-roboto-medium text-sm text-[#FF5F5F]">{project.courseId}</span>
                     </div>
                     <p className="font-roboto-medium text-sm text-[#EEC583] leading-tight">{project.courseName}</p>
-                    <p className="font-inter-regular text-xs text-[#606060] leading-relaxed">{project.description}</p>
-                    <div className="flex justify-end pt-2">
+                    <p className="font-inter-regular text-xs text-[#606060] leading-relaxed line-clamp-5">{project.description}</p>
+                    <div className="flex justify-end pt-1">
                       <button className="btn-hover bg-[#B1AC69] text-black font-inter-semibold text-xs px-4 py-2 rounded-lg flex items-center space-x-2 shadow-md">
                         <span>Learn More</span>
                         <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                          <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010 1.414z" clipRule="evenodd" />
                         </svg>
                       </button>
                     </div>

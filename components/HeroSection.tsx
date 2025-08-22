@@ -23,7 +23,7 @@ export default function HeroSection() {
           prevIndex === heroImages.length - 1 ? 0 : prevIndex + 1
         )
         setIsTransitioning(false)
-      }, 300) // Transition duration
+      }, 700) // Transition duration
     }, 3000)
 
     return () => clearInterval(interval)
@@ -35,7 +35,7 @@ export default function HeroSection() {
     setTimeout(() => {
       setCurrentImageIndex(currentImageIndex === heroImages.length - 1 ? 0 : currentImageIndex + 1)
       setIsTransitioning(false)
-    }, 300)
+    }, 700)
   }
 
   const prevImage = () => {
@@ -44,7 +44,7 @@ export default function HeroSection() {
     setTimeout(() => {
       setCurrentImageIndex(currentImageIndex === 0 ? heroImages.length - 1 : currentImageIndex - 1)
       setIsTransitioning(false)
-    }, 300)
+    }, 700)
   }
 
   return (
@@ -64,8 +64,8 @@ export default function HeroSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 relative z-10">
               <Link href="/projects">
-                <button className="btn-hover bg-[#EBBD69] text-white font-avenir-heavy text-lg px-8 py-4 rounded-lg flex items-center space-x-2 shadow-lg w-full sm:w-auto">
-                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <button className="btn-hover bg-[#EBBD69] text-black font-avenir-heavy text-lg px-8 py-4 rounded-lg flex items-center space-x-2 shadow-lg w-full sm:w-auto">
+                  <svg className="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                   </svg>
                   <span>Explore Projects</span>
@@ -83,15 +83,24 @@ export default function HeroSection() {
           </div>
                         <div className="lg:col-span-7 lg:pl-4 relative flex justify-end z-20">
                 <div className="hero-image-glow relative w-full h-[460px] lg:h-[520px] max-w-[85%] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/20 backdrop-blur-sm z-30 group">
-              <Image 
-                src={heroImages[currentImageIndex]} 
-                alt={`Engineering Laboratory ${currentImageIndex + 1}`} 
-                fill 
-                className={`object-cover transition-all duration-300 ${
-                  isTransitioning ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
-                }`}
-                priority 
-              />
+              <div className="relative w-full h-full">
+                {heroImages.map((image, index) => (
+                  <Image 
+                    key={index}
+                    src={image} 
+                    alt={`Engineering Laboratory ${index + 1}`} 
+                    fill 
+                    className={`absolute inset-0 object-cover transition-transform duration-700 ease-in-out ${
+                      index === currentImageIndex 
+                        ? 'translate-x-0' 
+                        : index < currentImageIndex 
+                          ? '-translate-x-full' 
+                          : 'translate-x-full'
+                    }`}
+                    priority={index === currentImageIndex}
+                  />
+                ))}
+              </div>
               
               {/* Navigation Arrows */}
               <button
@@ -131,7 +140,7 @@ export default function HeroSection() {
                         setTimeout(() => {
                           setCurrentImageIndex(index)
                           setIsTransitioning(false)
-                        }, 300)
+                        }, 700)
                       }
                     }}
                     disabled={isTransitioning}

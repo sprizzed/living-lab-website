@@ -32,7 +32,10 @@ export default function ProjectDetailPage() {
         "Vymazal, J. (2011). Constructed Wetlands for Wastewater Treatment: Five Decades of Experience. Environmental Science & Technology, 45(1), 61-69.",
         "EPA. (2000). Constructed Wetlands Treatment of Municipal Wastewaters. EPA/625/R-99/010.",
         "Stefanakis, A.I., et al. (2014). Vertical Flow Constructed Wetlands: Eco-engineering Systems for Wastewater and Sludge Treatment. Elsevier."
-      ]
+      ],
+      uploadedFiles: [],
+      selectedPreviewImage: 0,
+      imageCrops: []
     },
     '2': {
       title: "Bridge Design",
@@ -53,7 +56,10 @@ export default function ProjectDetailPage() {
         "AASHTO. (2017). AASHTO LRFD Bridge Design Specifications (8th ed.). American Association of State Highway and Transportation Officials.",
         "Nowak, A.S., & Collins, K.R. (2012). Reliability of Structures (2nd ed.). CRC Press.",
         "FHWA. (2012). Bridge Inspector's Reference Manual. Federal Highway Administration."
-      ]
+      ],
+      uploadedFiles: [],
+      selectedPreviewImage: 0,
+      imageCrops: []
     },
     '3': {
       title: "Water Quality Monitoring",
@@ -74,7 +80,10 @@ export default function ProjectDetailPage() {
         "Chapman, D. (1996). Water Quality Assessments: A Guide to the Use of Biota, Sediments and Water in Environmental Monitoring. UNESCO.",
         "EPA. (2012). Water Quality Standards Handbook (2nd ed.). EPA-820-B-12-003.",
         "Wetzel, R.G., & Likens, G.E. (2000). Limnological Analyses (3rd ed.). Springer."
-      ]
+      ],
+      uploadedFiles: [],
+      selectedPreviewImage: 0,
+      imageCrops: []
     }
   }
 
@@ -136,14 +145,37 @@ export default function ProjectDetailPage() {
           {/* Images Section - Top Half */}
           <div className="mb-12">
             <div className="space-y-6">
-              <div className="relative h-96 w-full rounded-2xl overflow-hidden shadow-2xl">
-                <Image 
-                  src={project.images[currentImageIndex]} 
-                  alt={`${project.title} - Image ${currentImageIndex + 1}`} 
-                  fill 
-                  className="object-cover" 
-                />
-                {project.images.length > 1 && (
+              <div className="relative h-[32rem] w-full rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative w-full h-full">
+                  {project.images && project.images.length > 0 ? (
+                    project.images.map((image, index) => (
+                      <Image 
+                        key={index}
+                        src={image} 
+                        alt={`${project.title} - Image ${index + 1}`} 
+                        fill 
+                        className={`absolute inset-0 object-cover transition-transform duration-700 ease-in-out ${
+                          index === currentImageIndex 
+                            ? 'translate-x-0' 
+                            : index < currentImageIndex 
+                              ? '-translate-x-full' 
+                              : 'translate-x-full'
+                        }`}
+                        style={{
+                          objectPosition: project.imageCrops && project.imageCrops[index] 
+                            ? `${project.imageCrops[index].x}% ${project.imageCrops[index].y}%`
+                            : 'center center'
+                        }}
+                        priority={index === currentImageIndex}
+                      />
+                    ))
+                  ) : (
+                    <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
+                      <p className="text-gray-500 text-lg">No images available</p>
+                    </div>
+                  )}
+                </div>
+                {project.images && project.images.length > 1 && (
                   <>
                     <button
                       onClick={prevImage}
@@ -164,7 +196,7 @@ export default function ProjectDetailPage() {
                   </>
                 )}
               </div>
-              {project.images.length > 1 && (
+              {project.images && project.images.length > 1 && (
                 <div className="flex justify-center space-x-2">
                   {project.images.map((_, index) => (
                     <button
@@ -201,13 +233,9 @@ export default function ProjectDetailPage() {
 
             <div>
               <h2 className="font-avenir-heavy text-2xl text-black mb-4">Procedure</h2>
-              <ol className="space-y-3">
-                {project.procedure.map((step, index) => (
-                  <li key={index} className="font-inter-regular text-base text-black leading-relaxed">
-                    <span className="font-semibold">{index + 1}.</span> {step}
-                  </li>
-                ))}
-              </ol>
+              <p className="font-inter-regular text-base text-black leading-relaxed">
+                {project.procedure.join(' ')}
+              </p>
             </div>
 
             <div>

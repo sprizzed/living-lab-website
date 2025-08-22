@@ -102,10 +102,10 @@ export default function AboutPage() {
                 {/* Research Paper Button */}
                 <div className="mt-8 text-center">
                   <a 
-                    href="/Living_laboratory_Final_Adhikari__K copy.pdf" 
+                    href="/Living_laboratory_Final_Adhikari__K.pdf" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-block btn-hover bg-[#489BAC] text-white font-avenir-heavy text-lg px-8 py-4 rounded-lg shadow-lg hover:bg-[#3a7a8a] transition-all duration-300"
+                    className="inline-block btn-hover bg-gradient-to-r from-yellow-400 via-yellow-500 to-orange-500 text-black font-avenir-heavy text-lg px-8 py-4 rounded-lg shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 border-2 border-yellow-300 hover:border-yellow-400"
                   >
                     Read the full Living Engineering Laboratory Research Paper!
                   </a>

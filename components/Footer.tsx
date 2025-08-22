@@ -63,33 +63,32 @@ export default function Footer() {
     <footer className="bg-[#A2CAD1]/60 text-black">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-3 gap-12">
+          {/* Group 1: LEL Logo, Heading, Description, and Social Links */}
           <div className="space-y-6">
-            <Link href="/" className="flex items-center space-x-3">
-              <div className="relative w-16 h-16">
-                <Image src="/images/logo.png" alt="Living Engineering Laboratory Logo" fill className="object-contain" />
-              </div>
-              <div className="font-avenir-heavy text-xl text-black leading-tight whitespace-nowrap">
-                Living Engineering Laboratory
-              </div>
-            </Link>
-            <p className="font-inter-regular text-base leading-relaxed max-w-sm">
+            <div className="flex items-center space-x-3">
+              <Image
+                src="/images/logo.png"
+                alt="Living Engineering Laboratory Logo"
+                width={50}
+                height={50}
+                className="w-12 h-12"
+              />
+              <h2 className="font-avenir-heavy text-xl text-black">Living Engineering Laboratory</h2>
+            </div>
+            <p className="font-inter-regular text-base text-[#606060] leading-relaxed">
               Transforming engineering education through hands-on learning and open educational resources.
             </p>
-            <div className="flex space-x-3">
+            <div className="flex space-x-4">
               {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className="bg-white p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
-                  aria-label={social.name}
-                >
+                <Link key={social.name} href={social.href} className="text-black hover:text-gray-700 transition-colors duration-200">
                   {social.icon}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
-          
-          <div className="space-y-6 md:ml-auto">
+
+          {/* Group 2: Quick Links */}
+          <div className="space-y-6">
             <h3 className="font-avenir-heavy text-xl text-black">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -102,7 +101,8 @@ export default function Footer() {
             </ul>
           </div>
           
-          <div className="space-y-6 md:ml-auto">
+          {/* Group 3: Resources */}
+          <div className="space-y-6">
             <h3 className="font-avenir-heavy text-xl text-black">Resources</h3>
             <ul className="space-y-3">
               {resources.map((resource) => (

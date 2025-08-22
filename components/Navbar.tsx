@@ -29,7 +29,7 @@ export default function Navbar() {
             <Link href="/teaching" className="font-avenir-next-condensed text-xl font-medium text-black hover:text-gray-600 transition-colors">Teaching</Link>
             <Link href="/service" className="font-avenir-next-condensed text-xl font-medium text-black hover:text-gray-600 transition-colors">Service</Link>
             <Link href="/contact" className="font-avenir-next-condensed text-xl font-medium text-black hover:text-gray-600 transition-colors">Contact</Link>
-            <Link href="/admin" className="font-avenir-next-condensed text-lg font-medium text-[#489BAC] hover:text-[#3a7a8a] transition-colors border border-[#489BAC] px-3 py-1 rounded-md">Admin</Link>
+            <Link href="/admin" className="font-avenir-next-condensed text-lg font-medium text-[#489BAC] hover:text-[#3a7a8a] transition-colors border border-[#489BAC] px-3 py-1 rounded-md">Login</Link>
           </div>
 
           <button
@@ -56,7 +56,7 @@ export default function Navbar() {
               <Link href="/teaching" className="block px-3 py-2 font-avenir-next-condensed text-lg font-medium text-black hover:text-gray-600 transition-colors">Teaching</Link>
               <Link href="/service" className="block px-3 py-2 font-avenir-next-condensed text-lg font-medium text-black hover:text-gray-600 transition-colors">Service</Link>
               <Link href="/contact" className="block px-3 py-2 font-avenir-next-condensed text-lg font-medium text-black hover:text-gray-600 transition-colors">Contact</Link>
-              <Link href="/admin" className="block px-3 py-2 font-avenir-next-condensed text-lg font-medium text-[#489BAC] hover:text-[#3a7a8a] transition-colors">Admin</Link>
+              <Link href="/admin" className="block px-3 py-2 font-avenir-next-condensed text-lg font-medium text-[#489BAC] hover:text-[#3a7a8a] transition-colors">Login</Link>
             </div>
           </div>
         )}
