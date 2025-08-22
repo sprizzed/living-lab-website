@@ -5,7 +5,8 @@ import FeaturedProjects from '../components/FeaturedProjects';
 import CallToAction from '../components/CallToAction';
 import Footer from '../components/Footer';
 
-// Force complete Vercel redeploy - All latest features included
+// Force complete Vercel redeploy - All latest features and fixes included
+// This ensures Vercel shows the same content as localhost
 export default function Home() {
   return (
     <>
