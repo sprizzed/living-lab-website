@@ -18,4 +18,4 @@ export default function Home() {
       <Footer />
     </>
   );
-}
+}// Force Vercel redeploy - Fri Aug 22 02:59:24 EDT 2025
