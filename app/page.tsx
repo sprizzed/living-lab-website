@@ -5,17 +5,18 @@ import FeaturedProjects from '../components/FeaturedProjects';
 import CallToAction from '../components/CallToAction';
 import Footer from '../components/Footer';
 
+// Force complete Vercel redeploy - All latest features included
 export default function Home() {
   return (
     <>
       <Navbar />
       <main>
         <HeroSection />
-        <WhySection />
         <FeaturedProjects />
+        <WhySection />
         <CallToAction />
       </main>
       <Footer />
     </>
   );
-}// Force Vercel redeploy - Fri Aug 22 02:59:24 EDT 2025
+}
