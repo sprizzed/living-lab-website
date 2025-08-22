@@ -2,6 +2,13 @@
 
 import { useState, useEffect } from 'react'
 
+interface ImageCrop {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
 interface Project {
   id: string
   title: string
@@ -14,21 +21,169 @@ interface Project {
   references: string[]
   uploadedFiles: File[]
   selectedPreviewImage: number
-  imageCrops: { x: number; y: number; width: number; height: number }[]
+  imageCrops: ImageCrop[]
 }
+
+// Default projects that should always be available
+const defaultProjects: Project[] = [
+  {
+    id: '1',
+    title: "Constructed Wetland Model",
+    category: "Environmental Engineering",
+    courseId: "CEE 400",
+    courseName: "Capstone Design: Lab-scale Model for Wetlands",
+    description: "This capstone project involves the design and construction of a lab-scale wetland model, demonstrating innovative approaches to water treatment and sustainable environmental engineering.",
+    images: ["/images/project1.jpg"],
+    procedure: [
+      "Design Phase: Conceptual design of wetland components including inlet distribution, substrate layers, and outlet collection systems.",
+      "Construction Phase: Assembly of physical model using appropriate materials for substrate, vegetation, and structural components.",
+      "Testing Phase: Implementation of controlled flow rates and monitoring of water quality parameters including pH, dissolved oxygen, and contaminant removal efficiency.",
+      "Analysis Phase: Data collection and analysis to evaluate treatment performance and optimize design parameters.",
+      "Documentation Phase: Comprehensive documentation of design decisions, construction methods, and performance results."
+    ],
+    references: [
+      "Kadlec, R.H., & Wallace, S.D. (2009). Treatment Wetlands (2nd ed.). CRC Press.",
+      "Vymazal, J. (2011). Constructed Wetlands for Wastewater Treatment: Five Decades of Experience. Environmental Science & Technology, 45(1), 61-69.",
+      "EPA. (2000). Constructed Wetlands Treatment of Municipal Wastewaters. EPA/625/R-99/010.",
+      "Stefanakis, A.I., et al. (2014). Vertical Flow Constructed Wetlands: Eco-engineering Systems for Wastewater and Sludge Treatment. Elsevier."
+    ],
+    uploadedFiles: [],
+    selectedPreviewImage: 0,
+    imageCrops: [{ x: 50, y: 50, width: 100, height: 100 }]
+  },
+  {
+    id: '2',
+    title: "Bridge Design",
+    category: "Structural Engineering",
+    courseId: "ENGR 210",
+    courseName: "Engineering Statics",
+    description: "A practical application of engineering statics, this project focuses on the design, construction, and rigorous testing of a scaled bridge, showcasing structural integrity principles.",
+    images: ["/images/project2.jpg", "/images/project1.jpg", "/images/project3.jpg"],
+    procedure: [
+      "Load Analysis: Calculation of dead loads, live loads, and environmental loads acting on the bridge structure.",
+      "Structural Design: Determination of member sizes, connections, and overall geometry based on load requirements.",
+      "Material Selection: Choosing appropriate materials considering strength, durability, and cost constraints.",
+      "Construction Planning: Development of construction sequence and quality control procedures.",
+      "Testing Protocol: Design and implementation of load testing to verify structural performance and safety factors."
+    ],
+    references: [
+      "Hibbeler, R.C. (2016). Engineering Mechanics: Statics (14th ed.). Pearson.",
+      "AASHTO. (2017). AASHTO LRFD Bridge Design Specifications (8th ed.). American Association of State Highway and Transportation Officials.",
+      "Nowak, A.S., & Collins, K.R. (2012). Reliability of Structures (2nd ed.). CRC Press.",
+      "FHWA. (2012). Bridge Inspector's Reference Manual. Federal Highway Administration."
+    ],
+    uploadedFiles: [],
+    selectedPreviewImage: 0,
+    imageCrops: [{ x: 50, y: 50, width: 100, height: 100 }, { x: 50, y: 50, width: 100, height: 100 }, { x: 50, y: 50, width: 100, height: 100 }]
+  },
+  {
+    id: '3',
+    title: "Water Quality Monitoring",
+    category: "Environmental Engineering",
+    courseId: "CEE 318",
+    courseName: "Environmental Water Quality",
+    description: "Through hands-on field measurements and laboratory analysis, this project assesses the overall health and quality of a natural water body.",
+    images: ["/images/project3.jpg", "/images/project1.jpg", "/images/project2.jpg"],
+    procedure: [
+      "Site Selection: Identification and characterization of sampling locations based on watershed characteristics and potential pollution sources.",
+      "Sampling Protocol: Development of sampling procedures for various water quality parameters including physical, chemical, and biological indicators.",
+      "Field Measurements: On-site measurement of temperature, pH, dissolved oxygen, conductivity, and turbidity using calibrated instruments.",
+      "Laboratory Analysis: Processing of collected samples for nutrient analysis, bacterial counts, and contaminant concentrations.",
+      "Data Analysis: Statistical analysis of results and comparison with regulatory standards and historical data."
+    ],
+    references: [
+      "APHA. (2017). Standard Methods for the Examination of Water and Wastewater (23rd ed.). American Public Health Association.",
+      "Chapman, D. (1996). Water Quality Assessments: A Guide to the Use of Biota, Sediments and Water in Environmental Monitoring. UNESCO.",
+      "EPA. (2012). Water Quality Standards Handbook (2nd ed.). EPA-820-B-12-003.",
+      "Wetzel, R.G., & Likens, G.E. (2000). Limnological Analyses (3rd ed.). Springer."
+    ],
+    uploadedFiles: [],
+    selectedPreviewImage: 0,
+    imageCrops: [{ x: 50, y: 50, width: 100, height: 100 }, { x: 50, y: 50, width: 100, height: 100 }, { x: 50, y: 50, width: 100, height: 100 }]
+  },
+  {
+    id: '4',
+    title: "Construction Materials",
+    category: "Materials Science",
+    courseId: "CEE 350",
+    courseName: "Construction Materials",
+    description: "Study of properties and applications of construction materials in engineering projects.",
+    images: ["/images/project1.jpg", "/images/project2.jpg", "/images/project3.jpg"],
+    procedure: [
+      "Material Testing: Laboratory analysis of material properties including strength, durability, and workability.",
+      "Quality Control: Implementation of testing protocols and standards for construction materials.",
+      "Performance Evaluation: Assessment of material behavior under various environmental conditions.",
+      "Documentation: Comprehensive recording of test results and material specifications."
+    ],
+    references: [
+      "Mindess, S., Young, J.F., & Darwin, D. (2003). Concrete (2nd ed.). Pearson.",
+      "ASTM International. (2018). Standard Test Methods for Compressive Strength of Cylindrical Concrete Specimens. ASTM C39.",
+      "ACI Committee 318. (2019). Building Code Requirements for Structural Concrete. American Concrete Institute."
+    ],
+    uploadedFiles: [],
+    selectedPreviewImage: 0,
+    imageCrops: [{ x: 50, y: 50, width: 100, height: 100 }]
+  },
+  {
+    id: '5',
+    title: "Renewable Energy Systems",
+    category: "Sustainability",
+    courseId: "ENGR 320",
+    courseName: "Renewable Energy Systems",
+    description: "Design and implementation of sustainable energy solutions.",
+    images: ["/images/project2.jpg", "/images/project1.jpg", "/images/project3.jpg"],
+    procedure: [
+      "System Design: Conceptual design of renewable energy systems including solar, wind, and hydroelectric components.",
+      "Performance Analysis: Evaluation of system efficiency and energy output under various conditions.",
+      "Integration Planning: Development of grid connection and energy storage solutions.",
+      "Economic Assessment: Cost-benefit analysis and feasibility studies for renewable energy projects."
+    ],
+    references: [
+      "Twidell, J., & Weir, T. (2015). Renewable Energy Resources (3rd ed.). Routledge.",
+      "IEA. (2020). Renewables Information: Overview. International Energy Agency.",
+      "NREL. (2019). Renewable Energy Data Book. National Renewable Energy Laboratory."
+    ],
+    uploadedFiles: [],
+    selectedPreviewImage: 0,
+    imageCrops: [{ x: 50, y: 50, width: 100, height: 100 }]
+  },
+  {
+    id: '6',
+    title: "Water Treatment Design",
+    category: "Water Resources",
+    courseId: "CEE 415",
+    courseName: "Water Treatment Design",
+    description: "Advanced water treatment system design and optimization.",
+    images: ["/images/project3.jpg", "/images/project1.jpg", "/images/project2.jpg"],
+    procedure: [
+      "Process Design: Development of water treatment processes including coagulation, sedimentation, filtration, and disinfection.",
+      "System Optimization: Optimization of treatment parameters for maximum efficiency and water quality.",
+      "Pilot Testing: Implementation of pilot-scale testing to validate design assumptions.",
+      "Performance Monitoring: Continuous monitoring and adjustment of treatment processes."
+    ],
+    references: [
+      "MWH. (2012). Water Treatment: Principles and Design (3rd ed.). John Wiley & Sons.",
+      "AWWA. (2017). Water Quality & Treatment: A Handbook on Drinking Water (7th ed.). American Water Works Association.",
+      "EPA. (2018). Drinking Water Treatment Technologies for Household Use. EPA/600/R-18/179."
+    ],
+    uploadedFiles: [],
+    selectedPreviewImage: 0,
+    imageCrops: [{ x: 50, y: 50, width: 100, height: 100 }]
+  }
+]
 
 interface AdminDashboardProps {
   onLogout: () => void
 }
 
 export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
+  const [activeSection, setActiveSection] = useState<'projects' | 'categories' | 'courses'>('projects')
   const [projects, setProjects] = useState<Project[]>([])
   const [editingProject, setEditingProject] = useState<Project | null>(null)
   const [isAddingProject, setIsAddingProject] = useState(false)
   const [isManagingCategories, setIsManagingCategories] = useState(false)
   const [isManagingCourses, setIsManagingCourses] = useState(false)
-  const [existingImages, setExistingImages] = useState<string[]>([])
-  const [categories, setCategories] = useState([
+  const [categories, setCategories] = useState<{ id: string; name: string }[]>([
     { id: 'environmental', name: 'Environmental Engineering' },
     { id: 'structural', name: 'Structural Engineering' },
     { id: 'water', name: 'Water Resources' },
@@ -118,18 +273,32 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
     imageCrops: []
   })
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
+  const [existingImages, setExistingImages] = useState<string[]>([])
 
   // Load data from localStorage on component mount
   useEffect(() => {
     try {
-      // Load projects
+      // Load projects - always start with default projects and merge with localStorage
+      let combinedProjects = [...defaultProjects]
+      
       const savedProjects = localStorage.getItem('projects')
       if (savedProjects) {
         const parsedProjects = JSON.parse(savedProjects)
         if (parsedProjects && Array.isArray(parsedProjects)) {
-          setProjects(parsedProjects)
+          // Create a map for quick lookup of default projects
+          const defaultProjectsMap = new Map(defaultProjects.map(p => [p.id, p]))
+          
+          // Merge parsedProjects with defaultProjects
+          // Prioritize parsedProjects if IDs conflict, and add new ones
+          parsedProjects.forEach(p => {
+            defaultProjectsMap.set(p.id, p)
+          })
+          
+          combinedProjects = Array.from(defaultProjectsMap.values())
         }
       }
+      
+      setProjects(combinedProjects)
 
       // Load categories
       const savedCategories = localStorage.getItem('categories')
@@ -150,7 +319,8 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       }
     } catch (error) {
       console.warn('Error loading data from localStorage:', error)
-      // Continue with default data on error
+      // Fallback to default projects on error
+      setProjects(defaultProjects)
     }
   }, [])
 
@@ -413,7 +583,9 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
         saveProjects(projects.map(p => p.id === editingProject.id ? newProject : p))
         setEditingProject(null)
       } else {
-        saveProjects([...projects, newProject])
+        // Ensure we don't lose existing projects when adding new ones
+        const updatedProjects = [...projects, newProject]
+        saveProjects(updatedProjects)
         setIsAddingProject(false)
       }
 
