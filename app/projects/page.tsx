@@ -175,17 +175,22 @@ export default function ProjectsPage() {
     }
   ]
 
-  // Load projects from localStorage on component mount
+  // Load projects from localStorage on component mount, fallback to default projects
   useEffect(() => {
-    const savedProjects = localStorage.getItem('projects')
-    if (savedProjects) {
-      const parsedProjects = JSON.parse(savedProjects)
-      if (parsedProjects.length > 0) {
-        setProjects(parsedProjects)
+    try {
+      const savedProjects = localStorage.getItem('projects')
+      if (savedProjects) {
+        const parsedProjects = JSON.parse(savedProjects)
+        if (parsedProjects && parsedProjects.length > 0) {
+          setProjects(parsedProjects)
+        } else {
+          setProjects(defaultProjects)
+        }
       } else {
         setProjects(defaultProjects)
       }
-    } else {
+    } catch (error) {
+      console.warn('Error loading projects from localStorage:', error)
       setProjects(defaultProjects)
     }
   }, [])

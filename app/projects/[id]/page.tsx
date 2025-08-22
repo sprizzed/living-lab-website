@@ -116,12 +116,33 @@ export default function ProjectDetailPage() {
 
   // Load projects from localStorage on component mount
   useEffect(() => {
-    const savedProjects = localStorage.getItem('projects')
-    if (savedProjects) {
-      const parsedProjects: Project[] = JSON.parse(savedProjects)
-      const foundProject = parsedProjects.find((p: Project) => p.id === projectId)
-      if (foundProject) {
-        setProject(foundProject)
+    try {
+      const savedProjects = localStorage.getItem('projects')
+      if (savedProjects) {
+        const parsedProjects: Project[] = JSON.parse(savedProjects)
+        const foundProject = parsedProjects.find((p: Project) => p.id === projectId)
+        if (foundProject) {
+          setProject(foundProject)
+        } else {
+          // Fallback to default projects if not found in localStorage
+          const defaultProject = defaultProjects[projectId]
+          if (defaultProject) {
+            setProject(defaultProject)
+          }
+        }
+      } else {
+        // Fallback to default projects if no localStorage data
+        const defaultProject = defaultProjects[projectId]
+        if (defaultProject) {
+          setProject(defaultProject)
+        }
+      }
+    } catch (error) {
+      console.warn('Error loading projects from localStorage:', error)
+      // Fallback to default projects on error
+      const defaultProject = defaultProjects[projectId]
+      if (defaultProject) {
+        setProject(defaultProject)
       }
     }
   }, [projectId])

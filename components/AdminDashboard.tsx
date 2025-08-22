@@ -119,31 +119,74 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
   })
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([])
 
-  // Load projects from localStorage on component mount
+  // Load data from localStorage on component mount
   useEffect(() => {
-    const savedProjects = localStorage.getItem('projects')
-    if (savedProjects) {
-      const parsedProjects = JSON.parse(savedProjects)
-      if (parsedProjects.length > 0) {
-        setProjects(parsedProjects)
+    try {
+      // Load projects
+      const savedProjects = localStorage.getItem('projects')
+      if (savedProjects) {
+        const parsedProjects = JSON.parse(savedProjects)
+        if (parsedProjects && Array.isArray(parsedProjects)) {
+          setProjects(parsedProjects)
+        }
       }
+
+      // Load categories
+      const savedCategories = localStorage.getItem('categories')
+      if (savedCategories) {
+        const parsedCategories = JSON.parse(savedCategories)
+        if (parsedCategories && Array.isArray(parsedCategories)) {
+          setCategories(parsedCategories)
+        }
+      }
+
+      // Load courses
+      const savedCourses = localStorage.getItem('courses')
+      if (savedCourses) {
+        const parsedCourses = JSON.parse(savedCourses)
+        if (parsedCourses && Array.isArray(parsedCourses)) {
+          setCourses(parsedCourses)
+        }
+      }
+    } catch (error) {
+      console.warn('Error loading data from localStorage:', error)
+      // Continue with default data on error
     }
   }, [])
 
-  // Save projects to localStorage whenever projects change
-  useEffect(() => {
-    localStorage.setItem('projects', JSON.stringify(projects))
-  }, [projects])
+  // Save projects to localStorage
+  const saveProjects = (newProjects: Project[]) => {
+    try {
+      localStorage.setItem('projects', JSON.stringify(newProjects))
+      setProjects(newProjects)
+    } catch (error) {
+      console.error('Error saving projects to localStorage:', error)
+      // Still update state even if localStorage fails
+      setProjects(newProjects)
+    }
+  }
 
-  // Save categories to localStorage whenever categories change
-  useEffect(() => {
-    localStorage.setItem('categories', JSON.stringify(categories))
-  }, [categories])
+  // Save categories to localStorage
+  const saveCategories = (newCategories: { id: string; name: string }[]) => {
+    try {
+      localStorage.setItem('categories', JSON.stringify(newCategories))
+      setCategories(newCategories)
+    } catch (error) {
+      console.error('Error saving categories to localStorage:', error)
+      setCategories(newCategories)
+    }
+  }
 
-  // Save courses to localStorage whenever courses change
-  useEffect(() => {
-    localStorage.setItem('courses', JSON.stringify(courses))
-  }, [courses])
+  // Save courses to localStorage
+  const saveCourses = (newCourses: typeof courses) => {
+    try {
+      localStorage.setItem('courses', JSON.stringify(newCourses))
+      setCourses(newCourses)
+    } catch (error) {
+      console.error('Error saving courses to localStorage:', error)
+      setCourses(newCourses)
+    }
+  }
 
   // Load courses from localStorage on component mount
   useEffect(() => {
@@ -211,76 +254,99 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
   // Existing image management functions
   const removeExistingImage = (index: number) => {
-    const newImages = existingImages.filter((_, i) => i !== index)
-    setExistingImages(newImages)
+    const newExistingImages = [...existingImages]
+    newExistingImages.splice(index, 1)
+    setExistingImages(newExistingImages)
     
-    // Update selectedPreviewImage if needed
-    if (formData.selectedPreviewImage >= newImages.length) {
-      setFormData(prev => ({
-        ...prev,
-        selectedPreviewImage: Math.max(0, newImages.length - 1)
-      }))
+    // Update imageCrops to match
+    const newImageCrops = [...(formData.imageCrops || [])]
+    newImageCrops.splice(index, 1)
+    setFormData(prev => ({ ...prev, imageCrops: newImageCrops }))
+    
+    // Adjust selectedPreviewImage if necessary
+    if (formData.selectedPreviewImage >= newExistingImages.length) {
+      setFormData(prev => ({ ...prev, selectedPreviewImage: Math.max(0, newExistingImages.length - 1) }))
     }
-    
-    // Update imageCrops
-    const newCrops = formData.imageCrops.filter((_, i) => i !== index)
-    setFormData(prev => ({
-      ...prev,
-      imageCrops: newCrops
-    }))
   }
 
   const moveExistingImageUp = (index: number) => {
     if (index > 0) {
-      const newImages = [...existingImages]
-      const temp = newImages[index]
-      newImages[index] = newImages[index - 1]
-      newImages[index - 1] = temp
-      setExistingImages(newImages)
+      const newExistingImages = [...existingImages]
+      const temp = newExistingImages[index]
+      newExistingImages[index] = newExistingImages[index - 1]
+      newExistingImages[index - 1] = temp
+      setExistingImages(newExistingImages)
       
-      // Update imageCrops accordingly
-      const newCrops = [...formData.imageCrops]
-      const tempCrop = newCrops[index]
-      newCrops[index] = newCrops[index - 1]
-      newCrops[index - 1] = tempCrop
-      setFormData(prev => ({
-        ...prev,
-        imageCrops: newCrops
-      }))
+      // Update imageCrops to match
+      const newImageCrops = [...(formData.imageCrops || [])]
+      const tempCrop = newImageCrops[index]
+      newImageCrops[index] = newImageCrops[index - 1]
+      newImageCrops[index - 1] = tempCrop
+      setFormData(prev => ({ ...prev, imageCrops: newImageCrops }))
     }
   }
 
   const moveExistingImageDown = (index: number) => {
     if (index < existingImages.length - 1) {
-      const newImages = [...existingImages]
-      const temp = newImages[index]
-      newImages[index] = newImages[index + 1]
-      newImages[index + 1] = temp
-      setExistingImages(newImages)
+      const newExistingImages = [...existingImages]
+      const temp = newExistingImages[index]
+      newExistingImages[index] = newExistingImages[index + 1]
+      newExistingImages[index + 1] = temp
+      setExistingImages(newExistingImages)
       
-      // Update imageCrops accordingly
-      const newCrops = [...formData.imageCrops]
-      const tempCrop = newCrops[index]
-      newCrops[index] = newCrops[index + 1]
-      newCrops[index + 1] = tempCrop
-      setFormData(prev => ({
-        ...prev,
-        imageCrops: newCrops
-      }))
+      // Update imageCrops to match
+      const newImageCrops = [...(formData.imageCrops || [])]
+      const tempCrop = newImageCrops[index]
+      newImageCrops[index] = newImageCrops[index + 1]
+      newImageCrops[index + 1] = tempCrop
+      setFormData(prev => ({ ...prev, imageCrops: newImageCrops }))
     }
   }
 
   // Category management functions
-  const addCategory = () => {
+  const handleAddCategory = () => {
     if (newCategory.id && newCategory.name) {
-      setCategories(prev => [...prev, newCategory])
+      const categoryExists = categories.find(c => c.id === newCategory.id)
+      if (categoryExists) {
+        alert('Category ID already exists!')
+        return
+      }
+      const updatedCategories = [...categories, { ...newCategory }]
+      saveCategories(updatedCategories)
       setNewCategory({ id: '', name: '' })
     }
   }
 
-  const deleteCategory = (categoryId: string) => {
-    if (confirm('Are you sure you want to delete this category? Projects using this category will need to be updated.')) {
-      setCategories(prev => prev.filter(c => c.id !== categoryId))
+  const handleDeleteCategory = (categoryId: string) => {
+    if (confirm('Are you sure you want to delete this category?')) {
+      const updatedCategories = categories.filter(c => c.id !== categoryId)
+      saveCategories(updatedCategories)
+    }
+  }
+
+  const handleAddCourse = () => {
+    if (newCourse.title && newCourse.code) {
+      const courseExists = courses.find(c => c.code === newCourse.code)
+      if (courseExists) {
+        alert('Course code already exists!')
+        return
+      }
+      const updatedCourses = [...courses, { ...newCourse, id: Date.now() }]
+      saveCourses(updatedCourses)
+      setNewCourse({
+        title: '',
+        code: '',
+        description: '',
+        credits: 3,
+        image: '/images/project1.jpg'
+      })
+    }
+  }
+
+  const handleDeleteCourse = (courseId: number) => {
+    if (confirm('Are you sure you want to delete this course?')) {
+      const updatedCourses = courses.filter(c => c.id !== courseId)
+      saveCourses(updatedCourses)
     }
   }
 
@@ -344,10 +410,10 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       }
 
       if (editingProject) {
-        setProjects(prev => prev.map(p => p.id === editingProject.id ? newProject : p))
+        saveProjects(projects.map(p => p.id === editingProject.id ? newProject : p))
         setEditingProject(null)
       } else {
-        setProjects(prev => [...prev, newProject])
+        saveProjects([...projects, newProject])
         setIsAddingProject(false)
       }
 
@@ -398,7 +464,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
 
   const handleDelete = (projectId: string) => {
     if (confirm('Are you sure you want to delete this project?')) {
-      setProjects(prev => prev.filter(p => p.id !== projectId))
+      saveProjects(projects.filter(p => p.id !== projectId))
     }
   }
 
@@ -427,7 +493,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       const temp = newProjects[index]
       newProjects[index] = newProjects[index - 1]
       newProjects[index - 1] = temp
-      setProjects(newProjects)
+      saveProjects(newProjects)
     }
   }
 
@@ -437,7 +503,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       const temp = newProjects[index]
       newProjects[index] = newProjects[index + 1]
       newProjects[index + 1] = temp
-      setProjects(newProjects)
+      saveProjects(newProjects)
     }
   }
 
@@ -446,7 +512,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       const newProjects = [...projects]
       const project = newProjects.splice(index, 1)[0]
       newProjects.unshift(project)
-      setProjects(newProjects)
+      saveProjects(newProjects)
     }
   }
 
@@ -455,7 +521,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
       const newProjects = [...projects]
       const project = newProjects.splice(index, 1)[0]
       newProjects.push(project)
-      setProjects(newProjects)
+      saveProjects(newProjects)
     }
   }
 
@@ -517,7 +583,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#489BAC] focus:border-[#489BAC]"
                   />
                   <button
-                    onClick={addCategory}
+                    onClick={handleAddCategory}
                     className="px-4 py-2 bg-[#489BAC] text-white rounded-md hover:bg-[#3a7a8a] transition-colors"
                   >
                     Add Category
@@ -532,7 +598,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                     <div key={category.id} className="flex justify-between items-center p-2 bg-gray-50 rounded">
                       <span className="font-medium">{category.name}</span>
                       <button
-                        onClick={() => deleteCategory(category.id)}
+                        onClick={() => handleDeleteCategory(category.id)}
                         className="px-2 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
                       >
                         Delete
@@ -588,11 +654,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-[#489BAC] focus:border-[#489BAC]"
                   />
                   <button
-                    onClick={() => {
-                      const newId = Math.max(...courses.map(c => c.id)) + 1;
-                      setCourses(prev => [...prev, { id: newId, ...newCourse, image: '/images/project1.jpg' }]);
-                      setNewCourse({ title: '', code: '', description: '', credits: 3, image: '/images/project1.jpg' });
-                    }}
+                    onClick={handleAddCourse}
                     className="px-4 py-2 bg-[#489BAC] text-white rounded-md hover:bg-[#3a7a8a] transition-colors"
                   >
                     Add Course
@@ -612,9 +674,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
                         <p className="text-sm text-gray-600">Credits: {course.credits}</p>
                       </div>
                       <button
-                        onClick={() => {
-                          setCourses(prev => prev.filter(c => c.id !== course.id));
-                        }}
+                        onClick={() => handleDeleteCourse(course.id)}
                         className="px-2 py-1 bg-red-600 text-white text-xs rounded hover:bg-red-700"
                       >
                         Delete

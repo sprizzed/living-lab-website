@@ -95,16 +95,21 @@ export default function FeaturedProjects() {
 
   // Load projects from localStorage on component mount, fallback to default projects
   useEffect(() => {
-    const savedProjects = localStorage.getItem('projects')
-    if (savedProjects) {
-      const parsedProjects = JSON.parse(savedProjects)
-      if (parsedProjects.length > 0) {
-        // Take the first 3 projects
-        setProjects(parsedProjects.slice(0, 3))
+    try {
+      const savedProjects = localStorage.getItem('projects')
+      if (savedProjects) {
+        const parsedProjects = JSON.parse(savedProjects)
+        // Ensure we have at least 3 projects, fallback to defaults if needed
+        if (parsedProjects && parsedProjects.length >= 3) {
+          setProjects(parsedProjects.slice(0, 3))
+        } else {
+          setProjects(defaultProjects)
+        }
       } else {
         setProjects(defaultProjects)
       }
-    } else {
+    } catch (error) {
+      console.warn('Error loading projects from localStorage:', error)
       setProjects(defaultProjects)
     }
   }, [])
