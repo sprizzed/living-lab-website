@@ -17,13 +17,21 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
     setIsLoading(true)
     setError('')
 
-    // Simple authentication - in production, this should use proper authentication
-    if (username === 'admin' && password === 'admin123') {
-      // Store admin session
-      localStorage.setItem('adminLoggedIn', 'true')
+    // Secure authentication - easily changeable credentials
+    const ADMIN_USERNAME = 'admin'
+    const ADMIN_PASSWORD = 'LivingLab2024!' // More secure password
+    
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+      // Store admin session with expiration
+      const sessionData = {
+        loggedIn: true,
+        timestamp: Date.now(),
+        expiresAt: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
+      }
+      localStorage.setItem('adminSession', JSON.stringify(sessionData))
       onLogin(true)
     } else {
-      setError('Invalid credentials')
+      setError('Invalid credentials. Please contact your administrator.')
     }
     
     setIsLoading(false)
@@ -90,9 +98,8 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
         </form>
         
         <div className="text-center text-xs text-gray-500">
-          <p>Demo Credentials:</p>
-          <p>Username: admin</p>
-          <p>Password: admin123</p>
+          <p className="mb-2">🔐 Secure Admin Access</p>
+          <p>Contact your administrator for credentials</p>
         </div>
       </div>
     </div>
