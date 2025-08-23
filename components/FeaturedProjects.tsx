@@ -37,8 +37,8 @@ export default function FeaturedProjects() {
       const savedProjects = localStorage.getItem('projects')
       if (savedProjects) {
         const parsedProjects = JSON.parse(savedProjects)
-        // Ensure we have at least 3 projects, fallback to defaults if needed
-        if (parsedProjects && parsedProjects.length >= 3) {
+        // Show available projects (up to 3), even if less than 3
+        if (parsedProjects && parsedProjects.length > 0) {
           setProjects(parsedProjects.slice(0, 3))
         } else {
           setProjects(defaultProjects)
