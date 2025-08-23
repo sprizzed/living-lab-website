@@ -32,7 +32,7 @@ interface AdminDashboardProps {
 }
 
 export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
-  const [activeSection, setActiveSection] = useState<'projects' | 'categories' | 'courses'>('projects')
+  // const [activeSection, setActiveSection] = useState<'projects' | 'categories' | 'courses'>('projects')
   const [projects, setProjects] = useState<Project[]>([])
   const [editingProject, setEditingProject] = useState<Project | null>(null)
   const [isAddingProject, setIsAddingProject] = useState(false)
@@ -48,7 +48,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
     { id: 'geotechnical', name: 'Geotechnical Engineering' },
     { id: 'electrical', name: 'Electrical Engineering' }
   ])
-  const [courses, setCourses] = useState<any[]>([])
+  const [courses, setCourses] = useState<Array<{id: number, title: string, code: string, description: string, credits: number, image: string}>>([])
   const [newCategory, setNewCategory] = useState({ id: '', name: '' })
   const [newCourse, setNewCourse] = useState({
     title: '',

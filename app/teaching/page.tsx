@@ -2,7 +2,7 @@ import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 
 export default function TeachingPage() {
-  const allCourses: any[] = []
+  const allCourses: Array<{id: number, code: string, credits: number, title: string, description: string}> = []
 
   return (
     <main className="min-h-screen">
