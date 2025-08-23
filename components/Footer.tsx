@@ -88,7 +88,7 @@ export default function Footer() {
           </div>
 
           {/* Group 2: Quick Links */}
-          <div className="space-y-6 ml-10">
+          <div className="space-y-6 ml-20">
             <h3 className="font-avenir-heavy text-xl text-black">Quick Links</h3>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -102,7 +102,7 @@ export default function Footer() {
           </div>
           
           {/* Group 3: Resources */}
-          <div className="space-y-6">
+          <div className="space-y-6 ml-10">
             <h3 className="font-avenir-heavy text-xl text-black">Resources</h3>
             <ul className="space-y-3">
               {resources.map((resource) => (
