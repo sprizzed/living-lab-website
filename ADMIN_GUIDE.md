@@ -1,7 +1,7 @@
 # 🎯 Living Engineering Laboratory - Admin Quick Start Guide
 
 ## 🔐 Admin Access
-- **URL**: `https://your-domain.vercel.app/admin`
+- **URL**: `https://living-lab-website.vercel.app/admin` (or your custom domain)
 - **Username**: `admin`
 - **Password**: `LivingLab2024!` (Updated for security)
 - **Session**: Expires after 24 hours automatically
@@ -125,4 +125,5 @@ If you need help:
 ---
 
 **Last Updated**: December 2024
-**Version**: 1.0
+**Version**: 1.1
+**Domain Note**: Currently using Vercel subdomain. Can be upgraded to custom domain.

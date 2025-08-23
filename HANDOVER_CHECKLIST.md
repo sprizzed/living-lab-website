@@ -57,7 +57,8 @@
 ### **Admin Credentials**
 - **Username**: `admin`
 - **Password**: `LivingLab2024!`
-- **URL**: `https://your-domain.vercel.app/admin`
+- **URL**: `https://living-lab-website.vercel.app/admin` (current Vercel deployment)
+- **Custom Domain**: Can be upgraded to remove "vercel.app" from URL
 
 ### **Key Files Modified**
 - `components/AdminLogin.tsx` - Improved security
@@ -87,4 +88,5 @@
 
 **Project Status**: ✅ Ready for Client Handover
 **Last Updated**: December 2024
-**Version**: 1.0
+**Version**: 1.1
+**Domain Status**: Vercel subdomain active, custom domain upgrade available.

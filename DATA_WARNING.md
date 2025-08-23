@@ -44,4 +44,5 @@ This current system is designed for initial deployment and testing. For producti
 ---
 
 **Last Updated**: December 2024
-**Version**: 1.0
+**Version**: 1.1
+**Note**: This document is critical for understanding data limitations before production use.

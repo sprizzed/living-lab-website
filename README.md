@@ -1,9 +1,10 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏗️ Living Engineering Laboratory Website
 
-## Getting Started
+This is a [Next.js](https://nextjs.org) project for the Living Engineering Laboratory, featuring a comprehensive admin system for project management and content control.
 
-First, run the development server:
+## 🚀 Quick Start
 
+### **Development**
 ```bash
 npm run dev
 # or
@@ -16,20 +17,58 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### **Production**
+```bash
+npm run build
+npm start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔐 Admin Access
 
-## Learn More
+- **URL**: `/admin` (e.g., `https://living-lab-website.vercel.app/admin`)
+- **Username**: `admin`
+- **Password**: `LivingLab2024!`
+- **Session**: Expires after 24 hours automatically
+
+## 📚 Documentation
+
+- **ADMIN_GUIDE.md** - Complete admin user guide and quick start
+- **DATA_WARNING.md** - Critical data storage limitations and risks
+- **HANDOVER_CHECKLIST.md** - Complete project handover status and checklist
+
+## 🌐 Deployment
+
+Currently deployed on Vercel with automatic deployments from GitHub main branch.
+
+**Current URL**: `https://living-lab-website.vercel.app`
+
+**Custom Domain**: Can be upgraded to remove "vercel.app" from URL for professional branding.
+
+## 🔧 Tech Stack
+
+- **Frontend**: Next.js 15.5.0, React 18, TypeScript
+- **Styling**: Tailwind CSS with custom fonts
+- **Deployment**: Vercel (automatic from GitHub)
+- **Storage**: Browser localStorage (client-side, see DATA_WARNING.md)
+- **Admin System**: Full CRUD operations for projects, categories, and courses
+
+## 🎯 Key Features
+
+- **Project Management**: Add, edit, delete, and reorder projects
+- **Image Upload**: Multiple images with cropping tools
+- **Featured Projects**: First 3 projects automatically display on homepage
+- **Category Management**: Organize projects by engineering disciplines
+- **Course Management**: Manage course information and details
+- **Responsive Design**: Mobile and desktop optimized
+
+## 📖 Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
+## 🚀 Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
