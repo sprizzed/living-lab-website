@@ -74,7 +74,7 @@ export default function FeaturedProjects() {
                     <Image
                       src={project.selectedPreviewImage !== undefined && project.images && project.images[project.selectedPreviewImage] 
                         ? project.images[project.selectedPreviewImage] 
-                        : project.images[0] || '/images/project1.jpg'}
+                        : project.images[0] || ''}
                       alt={project.title}
                       fill
                       className="object-cover"

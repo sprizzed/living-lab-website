@@ -33,84 +33,8 @@ export default function ProjectDetailPage() {
   const projectId = params.id as string
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  // Mock project data - in a real app, this would come from an API or database
-  const defaultProjects: Record<string, Project> = {
-    '1': {
-      id: '1',
-      title: "Constructed Wetland Model",
-      category: "Environmental Engineering",
-      courseId: "CEE 400",
-      courseName: "Capstone Design: Lab-scale Model for Wetlands",
-      description: "This capstone project involves the design and construction of a lab-scale wetland model, demonstrating innovative approaches to water treatment and sustainable environmental engineering.",
-      images: ["/images/project1.jpg", "/images/project2.jpg", "/images/project3.jpg"],
-      procedure: [
-        "Design Phase: Conceptual design of wetland components including inlet distribution, substrate layers, and outlet collection systems.",
-        "Construction Phase: Assembly of physical model using appropriate materials for substrate, vegetation, and structural components.",
-        "Testing Phase: Implementation of controlled flow rates and monitoring of water quality parameters including pH, dissolved oxygen, and contaminant removal efficiency.",
-        "Analysis Phase: Data collection and analysis to evaluate treatment performance and optimize design parameters.",
-        "Documentation Phase: Comprehensive documentation of design decisions, construction methods, and performance results."
-      ],
-      references: [
-        "Kadlec, R.H., & Wallace, S.D. (2009). Treatment Wetlands (2nd ed.). CRC Press.",
-        "Vymazal, J. (2011). Constructed Wetlands for Wastewater Treatment: Five Decades of Experience. Environmental Science & Technology, 45(1), 61-69.",
-        "EPA. (2000). Constructed Wetlands Treatment of Municipal Wastewaters. EPA/625/R-99/010.",
-        "Stefanakis, A.I., et al. (2014). Vertical Flow Constructed Wetlands: Eco-engineering Systems for Wastewater and Sludge Treatment. Elsevier."
-      ],
-      uploadedFiles: [],
-      selectedPreviewImage: 0,
-      imageCrops: [{ x: 50, y: 50, width: 100, height: 100 }]
-    },
-    '2': {
-      id: '2',
-      title: "Bridge Design",
-      category: "Structural Engineering",
-      courseId: "ENGR 210",
-      courseName: "Engineering Statics",
-      description: "A practical application of engineering statics, this project focuses on the design, construction, and rigorous testing of a scaled bridge, showcasing structural integrity principles.",
-      images: ["/images/project2.jpg", "/images/project1.jpg", "/images/project3.jpg"],
-      procedure: [
-        "Load Analysis: Calculation of dead loads, live loads, and environmental loads acting on the bridge structure.",
-        "Structural Design: Determination of member sizes, connections, and overall geometry based on load requirements.",
-        "Material Selection: Choosing appropriate materials considering strength, durability, and cost constraints.",
-        "Construction Planning: Development of construction sequence and quality control procedures.",
-        "Testing Protocol: Design and implementation of load testing to verify structural performance and safety factors."
-      ],
-      references: [
-        "Hibbeler, R.C. (2016). Engineering Mechanics: Statics (14th ed.). Pearson.",
-        "AASHTO. (2017). AASHTO LRFD Bridge Design Specifications (8th ed.). American Association of State Highway and Transportation Officials.",
-        "Nowak, A.S., & Collins, K.R. (2012). Reliability of Structures (2nd ed.). CRC Press.",
-        "FHWA. (2012). Bridge Inspector's Reference Manual. Federal Highway Administration."
-      ],
-      uploadedFiles: [],
-      selectedPreviewImage: 0,
-      imageCrops: [{ x: 50, y: 50, width: 100, height: 100 }, { x: 50, y: 50, width: 100, height: 100 }, { x: 50, y: 50, width: 100, height: 100 }]
-    },
-    '3': {
-      id: '3',
-      title: "Water Quality Monitoring",
-      category: "Environmental Engineering",
-      courseId: "CEE 318",
-      courseName: "Environmental Water Quality",
-      description: "Through hands-on field measurements and laboratory analysis, this project assesses the overall health and quality of a natural water body.",
-      images: ["/images/project3.jpg", "/images/project1.jpg", "/images/project2.jpg"],
-      procedure: [
-        "Site Selection: Identification and characterization of sampling locations based on watershed characteristics and potential pollution sources.",
-        "Sampling Protocol: Development of sampling procedures for various water quality parameters including physical, chemical, and biological indicators.",
-        "Field Measurements: On-site measurement of temperature, pH, dissolved oxygen, conductivity, and turbidity using calibrated instruments.",
-        "Laboratory Analysis: Processing of collected samples for nutrient analysis, bacterial counts, and contaminant concentrations.",
-        "Data Analysis: Statistical analysis of results and comparison with regulatory standards and historical data."
-      ],
-      references: [
-        "APHA. (2017). Standard Methods for the Examination of Water and Wastewater (23rd ed.). American Public Health Association.",
-        "Chapman, D. (1996). Water Quality Assessments: A Guide to the Use of Biota, Sediments and Water in Environmental Monitoring. UNESCO.",
-        "EPA. (2012). Water Quality Standards Handbook (2nd ed.). EPA-820-B-12-003.",
-        "Wetzel, R.G., & Likens, G.E. (2000). Limnological Analyses (3rd ed.). Springer."
-      ],
-      uploadedFiles: [],
-      selectedPreviewImage: 0,
-      imageCrops: [{ x: 50, y: 50, width: 100, height: 100 }, { x: 50, y: 50, width: 100, height: 100 }, { x: 50, y: 50, width: 100, height: 100 }]
-    }
-  }
+  // Default projects - now empty for client control
+  const defaultProjects: Record<string, Project> = {}
 
   const [project, setProject] = useState<Project | undefined>(defaultProjects[projectId])
 

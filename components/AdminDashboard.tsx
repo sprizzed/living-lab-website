@@ -48,63 +48,14 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
     { id: 'geotechnical', name: 'Geotechnical Engineering' },
     { id: 'electrical', name: 'Electrical Engineering' }
   ])
-  const [courses, setCourses] = useState([
-    {
-      id: 1,
-      title: "Engineering Statics",
-      code: "ENGR 210",
-      description: "Fundamental principles of statics and their application to engineering problems.",
-      credits: 3,
-      image: "/images/project1.jpg"
-    },
-    {
-      id: 2,
-      title: "Environmental Water Quality",
-      code: "CEE 318",
-      description: "Study of water quality parameters and environmental monitoring techniques.",
-      credits: 3,
-      image: "/images/project2.jpg"
-    },
-    {
-      id: 3,
-      title: "Capstone Design: Lab-scale Model for Wetlands",
-      code: "CEE 400",
-      description: "Comprehensive design project focusing on constructed wetland systems.",
-      credits: 4,
-      image: "/images/project3.jpg"
-    },
-    {
-      id: 4,
-      title: "Construction Materials",
-      code: "CEE 350",
-      description: "Properties and applications of construction materials in engineering projects.",
-      credits: 3,
-      image: "/images/project1.jpg"
-    },
-    {
-      id: 5,
-      title: "Renewable Energy Systems",
-      code: "ENGR 320",
-      description: "Design and implementation of sustainable energy solutions.",
-      credits: 3,
-      image: "/images/project2.jpg"
-    },
-    {
-      id: 6,
-      title: "Water Treatment Design",
-      code: "CEE 415",
-      description: "Advanced water treatment system design and optimization.",
-      credits: 4,
-      image: "/images/project3.jpg"
-    }
-  ])
+  const [courses, setCourses] = useState<any[]>([])
   const [newCategory, setNewCategory] = useState({ id: '', name: '' })
   const [newCourse, setNewCourse] = useState({
     title: '',
     code: '',
     description: '',
     credits: 3,
-    image: '/images/project1.jpg'
+    image: ''
   })
   const [formData, setFormData] = useState<{
     title: string
@@ -363,7 +314,7 @@ export default function AdminDashboard({ onLogout }: AdminDashboardProps) {
         code: '',
         description: '',
         credits: 3,
-        image: '/images/project1.jpg'
+        image: ''
       })
     }
   }
