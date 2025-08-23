@@ -9,7 +9,13 @@ This website now includes a comprehensive admin system that allows authorized us
 1. **Navigate to the Admin Panel**: Click on the "Admin" button in the navigation bar (top right of the website)
 2. **Login Credentials**:
    - Username: `admin`
-   - Password: `admin123`
+   - Password: `LivingLab2025!`
+
+### **Login Credentials:**
+```
+Username: admin
+Password: LivingLab2025!
+```
 
 ## Features
 

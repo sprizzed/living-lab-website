@@ -27,8 +27,14 @@ npm start
 
 - **URL**: `/admin` (e.g., `https://living-lab-website.vercel.app/admin`)
 - **Username**: `admin`
-- **Password**: `LivingLab2024!`
+- **Password**: `LivingLab2025!`
 - **Session**: Expires after 24 hours automatically
+
+### **Login Credentials:**
+```
+Username: admin
+Password: LivingLab2025!
+```
 
 ## 📚 Documentation
 

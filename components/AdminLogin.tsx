@@ -19,7 +19,7 @@ export default function AdminLogin({ onLogin }: AdminLoginProps) {
 
     // Secure authentication - easily changeable credentials
     const ADMIN_USERNAME = 'admin'
-    const ADMIN_PASSWORD = 'LivingLab2024!' // More secure password
+    const ADMIN_PASSWORD = 'LivingLab2025!' // Updated for 2025
     
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
       // Store admin session with expiration

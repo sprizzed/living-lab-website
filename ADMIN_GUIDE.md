@@ -3,8 +3,14 @@
 ## 🔐 Admin Access
 - **URL**: `https://living-lab-website.vercel.app/admin` (or your custom domain)
 - **Username**: `admin`
-- **Password**: `LivingLab2024!` (Updated for security)
+- **Password**: `LivingLab2025!` (Updated for 2025)
 - **Session**: Expires after 24 hours automatically
+
+### **Login Credentials:**
+```
+Username: admin
+Password: LivingLab2025!
+```
 
 ## 📋 Admin Dashboard Overview
 

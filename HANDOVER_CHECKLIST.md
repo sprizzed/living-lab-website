@@ -56,9 +56,15 @@
 
 ### **Admin Credentials**
 - **Username**: `admin`
-- **Password**: `LivingLab2024!`
+- **Password**: `LivingLab2025!`
 - **URL**: `https://living-lab-website.vercel.app/admin` (current Vercel deployment)
 - **Custom Domain**: Can be upgraded to remove "vercel.app" from URL
+
+### **Login Credentials:**
+```
+Username: admin
+Password: LivingLab2025!
+```
 
 ### **Key Files Modified**
 - `components/AdminLogin.tsx` - Improved security
